@@ -120,6 +120,8 @@ public class RestClient {
                         .build(this)
                         .toURL()
                         .openConnection();
+                httpClient.setConnectTimeout(2000);
+                httpClient.setReadTimeout(15000);
                 httpClient.setRequestMethod(this.method.toUpperCase());
                 httpClient.setDoInput(true);
                 httpClient.setDoOutput(false);
