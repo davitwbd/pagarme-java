@@ -84,6 +84,10 @@ public class Transaction extends PagarMeModel<Integer> {
     private String cardExpirationDate;
 
     @Expose(deserialize = false)
+    @SerializedName("local_time")
+    private String localTime;
+
+    @Expose(deserialize = false)
     @SerializedName("card_cvv")
     private String cardCvv;
 
@@ -144,6 +148,15 @@ public class Transaction extends PagarMeModel<Integer> {
     public void setCardExpirationDate(String cardExpirationDate) {
         this.cardExpirationDate = cardExpirationDate;
         addUnsavedProperty("cardExpirationDate");
+    }
+
+    public String getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(String localTime) {
+        this.localTime = localTime;
+        addUnsavedProperty("localTime");
     }
 
     public String getCardCvv() {
