@@ -150,6 +150,14 @@ public class Transaction extends PagarMeModel<Integer> {
         addUnsavedProperty("cardExpirationDate");
     }
 
+    public String getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(String localTime) {
+        this.localTime = localTime;
+    }
+
     public String getCardCvv() {
         return cardCvv;
     }
