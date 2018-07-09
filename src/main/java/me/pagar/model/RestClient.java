@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 import me.pagar.util.JSONUtils;
+import me.pagar.util.TLSSocketFactory;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -48,6 +49,11 @@ public class RestClient {
                 .getResource("pagarme.crt");
 
         if (null == certFile) {
+            final SSLContext ctx = SSLContext.getInstance("TLS");
+            ctx.init(null, null, null);
+            TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(ctx);
+            httpClient.setSSLSocketFactory(tlsSocketFactory);
+
             return;
         }
 
@@ -63,8 +69,8 @@ public class RestClient {
 
         final SSLContext ctx = SSLContext.getInstance("TLS");
         ctx.init(null, tmf.getTrustManagers(), null);
-
-        httpClient.setSSLSocketFactory(ctx.getSocketFactory());
+        TLSSocketFactory tlsSocketFactory = new TLSSocketFactory(ctx);
+        httpClient.setSSLSocketFactory(tlsSocketFactory);
     }
 
     public RestClient(final String method, final String url) throws PagarMeException {
