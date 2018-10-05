@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+import me.pagar.BankAccountType;
 import me.pagar.util.JSONUtils;
 
 import javax.ws.rs.HttpMethod;
@@ -27,6 +28,10 @@ public class BankAccount extends PagarMeModel<Integer> {
 
     @Expose
     private String conta;
+
+    @Expose
+    @SerializedName("type")
+    private BankAccountType type;
 
     @Expose
     @SerializedName("conta_dv")
@@ -70,6 +75,10 @@ public class BankAccount extends PagarMeModel<Integer> {
 
     public String getDocumentNumber() {
         return documentNumber;
+    }
+
+    public BankAccountType getType(){
+        return type;
     }
 
     public String getLegalName() {
@@ -118,6 +127,11 @@ public class BankAccount extends PagarMeModel<Integer> {
     public void setDocumentType(DocumentType documentType) {
         this.documentType = documentType;
         addUnsavedProperty("documentType");
+    }
+
+    public void setType(BankAccountType type){
+        this.type = type;
+        addUnsavedProperty("type");
     }
 
     public BankAccount find(int id) throws PagarMeException {
