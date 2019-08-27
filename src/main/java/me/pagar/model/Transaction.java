@@ -303,6 +303,13 @@ public class Transaction extends PagarMeModel<Integer> {
     private String boletoBarcode;
 
     /**
+     * Campo instruções do boleto. Máximo de 255 caracteres
+     */
+    @Expose(serialize = false)
+    @SerializedName("boleto_instructions")
+    private String boletoInstructions;
+
+    /**
      * Mostra se a transação foi criada utilizando a API Key ou Encryption Key.
      */
     @Expose(serialize = false)
@@ -764,6 +771,17 @@ public class Transaction extends PagarMeModel<Integer> {
         return boletoExpirationDate;
     }
 
+    /**
+     * @return {@link #boletoInstructions}
+     */
+    public String getBoletoInstructions() {
+        return boletoInstructions;
+    }
+
+    public void setBoletoInstructions(String boletoInstructions) {
+        this.boletoInstructions = boletoInstructions;
+    }
+
     public void setMetadata(final Map<String, Object> metadata) {
         this.metadata = metadata;
         addUnsavedProperty("metadata");
@@ -1120,6 +1138,7 @@ public class Transaction extends PagarMeModel<Integer> {
         this.paymentMethod = other.paymentMethod;
         this.boletoUrl = other.boletoUrl;
         this.boletoBarcode = other.boletoBarcode;
+        this.boletoInstructions = other.boletoInstructions;
         this.referer = other.referer;
         this.ip = other.ip;
         this.cardId = other.cardId;
